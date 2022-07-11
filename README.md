@@ -28,3 +28,6 @@ More specificly, we will use fabric for these tasks:
 2. Selecting committee members for evaluating client updates to prevent malicious activities
 3. Calculating average of the model based on the output of committee members
 4. Reading and Writing the updated model from from/to the ledger
+
+### Fabric CA
+Fabric provides an MSP which will be used for authentication/authroziation of the nodes in the network, like peers and orderes, or even clients that call chaincode. MSP is based on certificate. Therefore, if a node wants to be authenticated, it needs to have a certificate. In our case, all of our clients need to have certificate for communication with Fabric. There are different ways for generating these certificates, including using OpenSSL, Cryptogen, and Fabric-CA. Among these options, we have selected fabric-ca as it is ready-to-use and satisfies all of our requirments. The role of Fabric CA is generating some certificates for clients. Therefore, clients can send those certificates when they want to communicate with Fabric.
