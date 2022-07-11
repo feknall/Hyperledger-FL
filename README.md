@@ -33,4 +33,13 @@ More specificly, we will use fabric for these tasks:
 ### Fabric CA
 Fabric provides an MSP which will be used for authentication/authroziation of the nodes in the network, like peers and orderes, or even clients that call chaincode. MSP is based on certificate. Therefore, if a node wants to be authenticated, it needs to have a certificate. In our case, all of our clients need to have certificate for communication with Fabric. There are different ways for generating these certificates, including using OpenSSL, Cryptogen, and Fabric-CA. Among these options, we have selected fabric-ca as it is ready-to-use and satisfies all of our requirments. The role of Fabric CA is generating some certificates for clients. Therefore, clients can send those certificates when they want to communicate with Fabric.
 
+## Integration of Components
+We will discuss the approach that we are going to implement for integrating all these components together. To do this, first we need to discuss type of entities that our solution needs. 
+
++ Fabric: We consider Fabric as a black-box. Therefore, whenever we say Fabric, we mean the whole network, including Peers, Orderes, and the ledger.
++ Fabric CA: Consider it as single node in the network (not Indy or Fabric Network) that can create certificates which Fabric accepts.
++ Indy: Similar to Fabric, we consider it black-box.
++ Aries Agents: Aries agents are some process that each node can run (They are not a node in the network). 
++ Client: Consider these as data owners who want to participate and train a federated learning model. Non of the other components have any kind of data that can be used for training. Therefore, only clients have data. 
+
 
