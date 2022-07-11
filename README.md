@@ -22,3 +22,9 @@ Hyperledger Aries offers many different agent implementation. We have selected A
 
 ### Fabric
 In the federated learning setup with a central server, the central server is responsible for aggregation and computing the average model which is based on the responses of clients. We are going to remove the central server and replace it with a distributed ledger. We will implement some chaincode to complete this process. However, we have a problem in this part. The problem is that we cannot fully use chaincode and we need to have some process offchain, not onchain. The main reason is that it is not possible to use Python for chaincode as Fabric doesn't support it. Anyway, this is not a deal breaker. 
+
+More specificly, we will use fabric for these tasks:
+1. Selecting clients for staring the round N of training
+2. Selecting committee members for evaluating client updates to prevent malicious activities
+3. Calculating average of the model based on the output of committee members
+4. Reading and Writing the updated model from from/to the ledger
