@@ -11,6 +11,8 @@ We all know that Indy and Aries are working together very well, and the support 
 ### Scalability
 One of the main challenges of federated Learning is that it is hard to scale (e.g. 1 Million Clients) even by having central server. So, we must make sure to do not make this problem worse by introducing two different ledgers to our setup and removing the central server.
 
+### Extensibility
+Federated learning is an active research area that researchers try to find some solutions to address different kinds of concenrs. For example, some algorithms are completely focused on secure aggregation to prevent information leakage from client updates. Some other solutions try to find a way to adderss malicious activities by clients that have negative effect on the accrucay of the final model. In this work, we want to follow an architecture that is extensible to most of these recent works. Therefore, researchers can use the similar algorithm that they studied in a central server with a central identity with least amount of modification.
 
 ## Components
 For this project, we are going to use many different tools and libraries. This section describes a few of them and their rule in our setup:
