@@ -57,15 +57,16 @@ Fabric uses MSP that is based on certificate. Therefore, each client needs a cer
 ### Approach 1: Fabric CA as Issuer
 General Idea: Consider that the client doesn't have any kind of certificate. Therefore, it should get one. It can communicate with Fabric CA and send some of his information, like firstname, lastname, and an email address. Fabric CA uses these information to make sure this user is an honest user (e.g. by sending a verification email to him). Next, generates a certificate and send it back to the client. Now, the client has a certificate and can communicate with Fabric.
 
-+ In this approach, Fabic CA has two roles. The first role is authenticating the user, and the second role is being a certificate authoritiy. There is no problem with being a certificate authority. But the question is that should a certificate authority be responsible for authenticating users? My answer is NO.
++ In this approach, Fabic CA has two roles. The first role is authenticating the user, and the second role is being a certificate authoritiy. There is no problem with being a certificate authority. But the question is that should a certificate authority be responsible for authenticating users when we can take advantages of verifiable credential? My answer is NO.
 + Moreover, this scenario doesn't need Indy at all. Indy is required for cases that an issuer want to issue a verifiable credeintiale and a verifier wants to verify it. But this scenario doesn't need a separate issuer. Actually, issuer and verifier are the same nodes. It doesn't make sense!
++ Even more, this approach uses Aries just as a socket that provides secure communication which can be replaced by many other tools.
 
 ## Approach 2: Fabric CA as Verifier
 General Idea: Consider that the client doesn't have any kind of certificate. Therefore, it should get one. It can communicate with Fabric CA and send his verifiable credential (If it already doesn't have one, it should ask an issuer to issue a credential for it). Fabric CA receives the verifiable credential and verifies it. After successful verification, it generates a certificate and send it back to the client. Now, the client has a certificate and can communicate with Fabric.
 
 + In this approach Fabric CA is not responsible for authentication of user (as it shouldn't be). 
 + This approach needs at least another node that is an issuer. 
-+ The client can use its credential that is already issued or ask for a new credential.
++ The client can use its credential that is already issued or ask for a new credential. This is exactly the main motivation of verifiable credentails.
 + This approach involves Indy.
 
-We are going to use Appraoch 2.
+Choosing between these two approaches is not hard at all. The first one only involves Fabric (We can add Aries as well, but it is ridicioulous). While the second approach takes all the benefits of verifiable credential and needs all capabilities of Aries and Indy. Therefore, we are going to use the second approach. 
