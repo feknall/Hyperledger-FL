@@ -49,7 +49,7 @@ Now, we discuss how we are going to integrate these components.
 + We need Fabric and Indy for our solution. It is not important for us that each of these networks how many nodes (peers, orderer, ...) have. 
 + We need at least one Fabric CA node, but our solution is extensible to have more than one Fabric CA. We will have one Aries agent in the same node that Fabric CA is running.
 + Number of clients is variable and it can be from less than 10 clients to more than thousands or even milions. For each client, we are going to consider a Aries Cloud Agent. For example, if we have 5 clients, we will have 5 aries cloud agent that will be run in the same node since they are just a process and don't need to be a separate node. Therefore, 5 clients means 5 nodes in the network.
-+ We need a few issuers that Fabric CA 
++ We need a few (1, 2, etc.) issuers (Aries Cloud agents). Clients communicate with these issuers to receive a verifiable credential. Next, they send this credential to the Fabric CA's agent. Fabric CA's agent verifies these credential, and generates a certificate in response.
 
 ## How to generate a certificate that Fabric understands?
 Fabric uses MSP that is based on certificate. Therefore, each client needs a certificate for communication with Fabric. There are two different approaches to do it, we discuss details of each approach. Next, we describe why one of them makes more sense that the other one.
