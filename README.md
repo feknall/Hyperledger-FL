@@ -61,7 +61,7 @@ General Idea: Consider that the client doesn't have any kind of certificate. The
 + Moreover, this scenario doesn't need Indy at all. Indy is required for cases that an issuer want to issue a verifiable credeintiale and a verifier wants to verify it. But this scenario doesn't need a separate issuer. Actually, issuer and verifier are the same nodes. It doesn't make sense!
 + Even more, this approach uses Aries just as a socket that provides secure communication which can be replaced by many other tools.
 
-## Approach 2: Fabric CA as Verifier
+### Approach 2: Fabric CA as Verifier
 General Idea: Consider that the client doesn't have any kind of certificate. Therefore, it should get one. It can communicate with Fabric CA and send his verifiable credential (If it already doesn't have one, it should ask an issuer to issue a credential for it). Fabric CA receives the verifiable credential and verifies it. After successful verification, it generates a certificate and send it back to the client. Now, the client has a certificate and can communicate with Fabric.
 
 + In this approach Fabric CA is not responsible for authentication of user (as it shouldn't be). 
