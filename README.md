@@ -44,4 +44,8 @@ We will discuss the approach that we are going to implement for integrating all 
 + Aries Agents: Aries agents are some process that each node can run (They are not a node in the network). 
 + Client: Consider these as data owners who want to participate and train a federated learning model. Non of the other components have any kind of data that can be used for training. Therefore, only clients have data. 
 
+Now, we discuss how we are going to integrate these components.
 
++ We need Fabric and Indy for our solution. It is not important for us that each of these networks how many nodes (peers, orderer, ...) have. 
++ We need at least one Fabric CA node, but our solution is extensible to have more than one Fabric CA. We will have one Aries agent in the same node that Fabric CA is running.
++ Number of clients is variable and it can be from less than 10 clients to more than thousands or even milions. For each client, we are going to consider a Aries Cloud Agent. For example, if we have 5 clients, we will have 5 aries cloud agent that will be run in the same node since they are just a process and don't need to be a separate node. Therefore, 5 clients means 5 nodes in the network.
