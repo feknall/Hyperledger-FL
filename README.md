@@ -49,3 +49,23 @@ Now, we discuss how we are going to integrate these components.
 + We need Fabric and Indy for our solution. It is not important for us that each of these networks how many nodes (peers, orderer, ...) have. 
 + We need at least one Fabric CA node, but our solution is extensible to have more than one Fabric CA. We will have one Aries agent in the same node that Fabric CA is running.
 + Number of clients is variable and it can be from less than 10 clients to more than thousands or even milions. For each client, we are going to consider a Aries Cloud Agent. For example, if we have 5 clients, we will have 5 aries cloud agent that will be run in the same node since they are just a process and don't need to be a separate node. Therefore, 5 clients means 5 nodes in the network.
++ We need a few issuers that Fabric CA 
+
+## How to generate a certificate that Fabric understands?
+Fabric uses MSP that is based on certificate. Therefore, each client needs a certificate for communication with Fabric. There are two different approaches to do it, we discuss details of each approach. Next, we describe why one of them makes more sense that the other one.
+
+### Approach 1, Fabric CA as Issuer
+General Idea: Consider that the client doesn't have any kind of certificate. Therefore, it should get one. It can communicate with Fabric CA and send some of his information, like firstname, lastname, and an email address. Fabric CA uses these information to make sure this user is an honest user (e.g. by sending a verification email to him). Next, generates a certificate and send it back to the client. Now, the client has a certificate and can communicate with Fabric.
+
++ In this approach, Fabic CA has two roles. The first role is authenticating the user, and the second role is being a certificate authoritiy. There is no problem with being a certificate authority. But the question is that should a certificate authority be responsible for authenticating users? My answer is NO.
++ Moreover, this scenario doesn't need Indy at all. Indy is required for cases that an issuer want to issue a verifiable credeintiale and a verifier wants to verify it. But this scenario doesn't need a separate issuer. Actually, issuer and verifier are the same nodes. It doesn't make sense!
+
+## Approach 2, Fabric CA is Verifier
+General Idea: Consider that the client doesn't have any kind of certificate. Therefore, it should get one. It can communicate with Fabric CA and send his verifiable credential (If it already doesn't have one, it should ask an issuer to issue a credential for it). Fabric CA receives the verifiable credential and verifies it. After successful verification, it generates a certificate and send it back to the client. Now, the client has a certificate and can communicate with Fabric.
+
++ In this approach Fabric CA is not responsible for authentication of user (as it shouldn't be). 
++ This approach needs at least another node that is an issuer. 
++ The client can use its credential that is already issued or ask for a new credential.
++ This approach involves Indy.
+
+We are going to use Appraoch 2.
