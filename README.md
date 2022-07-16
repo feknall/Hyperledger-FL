@@ -70,3 +70,6 @@ General Idea: Consider that the client doesn't have any kind of certificate. The
 + This approach involves Indy.
 
 Choosing between these two approaches is not hard at all. The first one only involves Fabric (We can add Aries as well, but it is ridicioulous). While the second approach takes all the benefits of verifiable credential and needs all capabilities of Aries and Indy. Therefore, we are going to use the second approach. 
+
+## Why we have choosen to keep Fabric CA? We could remove it and do the authentication with direct communication between Fabric and Indy.
+Will be discussed in the future...
