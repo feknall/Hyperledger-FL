@@ -600,6 +600,7 @@ curl -X 'POST' \
   "comment": "score30"
 }'
 ```
+```
 {
   "auto_remove": true,
   "credential_offer": {
