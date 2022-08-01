@@ -709,7 +709,30 @@ curl -X 'POST' \
   "role": "issuer"
 }
 ```
-
+Client:
+```
+curl -X 'POST' \
+  'http://127.0.0.1:5001/wallet/did/create' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "method": "sov",
+  "options": {
+    "key_type": "ed25519"
+  }
+}'
+```
+```
+{
+  "result": {
+    "did": "UJdCchVFruC3vLtiWk3TGm",
+    "verkey": "Ft8UuMespT74GocjH8ihFpYxXHLZWQTvrJvcdHi4R2fW",
+    "posture": "wallet_only",
+    "key_type": "ed25519",
+    "method": "sov"
+  }
+}
+```
 Client:
 ```
 curl -X 'POST' \
