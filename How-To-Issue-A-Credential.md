@@ -148,12 +148,14 @@ curl -X 'POST' \
   }
 }
 ```
+
 Issuer (Store these values to the Von Network).
 ```
 did: CHvMhycdjVi1JRkKQ3y7wi
 verkey: 79xK26SHrVUQ1kDquR7vSRgrhmtvNW4GyLzwi2nNizUF
 role: endoser
 ```
+
 Issuer
 ```
 curl -X 'POST' \
@@ -172,6 +174,7 @@ curl -X 'POST' \
   }
 }
 ```
+
 Issuer:
 ```
 curl -X 'POST' \
@@ -646,6 +649,7 @@ curl -X 'POST' \
   "role": "issuer"
 }
 ```
+
 Client:
 ```
 curl -X 'POST' \
