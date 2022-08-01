@@ -74,5 +74,7 @@ Choosing between these two approaches is not hard at all. The first one only inv
 ## Why we have choosen to keep Fabric CA? We could remove it and do the authentication with direct communication between Fabric and Indy.
 Will be discussed in the future...
 
+## How to Issue a Credential by an Issuer for a Client?
+[Link](https://github.com/feknall/Hyperledger-FL/blob/78c7eeb63456739e933161f1a6775074f90c3a9d/How-To-Issue-A-Credential.md)
 
 
