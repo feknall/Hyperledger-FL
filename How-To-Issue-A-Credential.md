@@ -1,5 +1,18 @@
 # Process of Issuing a Credential for a Client by a Issuer
 
+## Summary
+```
+Issuer: create-invitiation
+Client: receive-invitation, accept-invitation
+Issuer: accept-request, wallet/did/create, (von network registration), wallet/did/public, schemas, credential-definition
+Client: send-proposal
+Issuer: /issue-credential/.../send-offer
+Client: /issue-credential/.../send-request
+Issuer: /issue-credential/.../issue
+Client: wallet/did/create, /issue-credential/.../store
+```
+
+## Details
 Issuer:
 ```
 curl -X 'POST' \
