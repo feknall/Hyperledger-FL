@@ -1,5 +1,15 @@
 # Hyperledger-FL
 
+## Sub Projects
+
+### FL Java Gateway
+https://github.com/feknall/fl-java-gateway
+
+### Fabric Java Chaincode
+https://github.com/feknall/fedblockchain-fabric/tree/master/chaincode-java
+
+### Aries, Federated Learning
+https://github.com/feknall/FedBlockchain
 
 ## Development Concerns
 This project tries to integrate Hyperledger Fabric, Aries Agents, and Indy. The task is training a federated learning model. In order to acheive that
