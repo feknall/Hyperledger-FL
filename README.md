@@ -20,7 +20,7 @@ First we need to download the chaincode and build it.
 2. Change directory to `./chaincode-java`
 3. Run `./gradlew clean build`
 
-Next, we need to run fabric using docker. 
+Next, we need to run fabric using docker.
 4. Clone `https://github.com/feknall/test-network`
 5. Change directory to `./test-network` where you can see `network.sh` file
 6. Run `./network.sh up createChannel -c mychannel -ca`
