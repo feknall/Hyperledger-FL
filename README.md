@@ -17,7 +17,7 @@ https://github.com/feknall/test-network
 ## How To Run
 First we need to download the chaincode and build it.
 1. Clone `https://github.com/feknall/fedblockchain-fabric`
-2. Change directory to `./chaincode-java`
+2. Change directory to `./chaincode-java` where you can see `gradlew` file
 3. Run `./gradlew clean build`
 
 
