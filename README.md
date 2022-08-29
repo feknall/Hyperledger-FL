@@ -11,6 +11,26 @@ https://github.com/feknall/fedblockchain-fabric/tree/master/chaincode-java
 ### Aries, Federated Learning
 https://github.com/feknall/FedBlockchain
 
+### Fabric Deployment
+https://github.com/feknall/test-network
+
+## How To Run
+First we need to download the chaincode and build it.
+1. Clone `https://github.com/feknall/fedblockchain-fabric`
+2. Change directory to `./chaincode-java`
+3. Run `./gradlew clean build`
+
+Next, we need to run fabric using docker. 
+4. Clone `https://github.com/feknall/test-network`
+5. Change directory to `./test-network` where you can see `network.sh` file
+6. Run `./network.sh up createChannel -c mychannel -ca`
+
+Finally, we deploy the chaincode on the fabric.
+7. Deploy the chaincode using the below command. Make sure to pass the correct value for `-ccp` and `-cccg` flags. 
+```
+./network.sh deployCC -ccn basic -ccp ../asset-transfer-basic/chaincode-java  -ccl java -ccep "OR('Org1MSP.peer','Org2MSP.peer')"  -cccg '../asset-transfer-basic/chaincode-java/collections_config.json' -ccep "OR('Org1MSP.peer','Org2MSP.peer')"
+```
+
 ## Development Concerns
 This project tries to integrate Hyperledger Fabric, Aries Agents, and Indy. The task is training a federated learning model. In order to acheive that
 many different architectures can be used. We have selected an architecture according to the following requirements of the project:
