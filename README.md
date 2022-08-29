@@ -22,12 +22,12 @@ First we need to download the chaincode and build it.
 
 
 Next, we need to run fabric using docker.
-4. Clone `https://github.com/feknall/test-network`
-5. Change directory to `./test-network` where you can see `network.sh` file
-6. Run `./network.sh up createChannel -c mychannel -ca`
+1. Clone `https://github.com/feknall/test-network`
+2. Change directory to `./test-network` where you can see `network.sh` file
+3. Run `./network.sh up createChannel -c mychannel -ca`
 
 Finally, we deploy the chaincode on the fabric.
-7. Deploy the chaincode using the below command. Make sure to pass the correct value for `-ccp` and `-cccg` flags. 
+1. Deploy the chaincode using the below command. Make sure to pass the correct value for `-ccp` and `-cccg` flags. 
 ```
 ./network.sh deployCC -ccn basic -ccp ../asset-transfer-basic/chaincode-java  -ccl java -ccep "OR('Org1MSP.peer','Org2MSP.peer')"  -cccg '../asset-transfer-basic/chaincode-java/collections_config.json' -ccep "OR('Org1MSP.peer','Org2MSP.peer')"
 ```
