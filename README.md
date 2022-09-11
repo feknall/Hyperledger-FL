@@ -3,13 +3,13 @@
 ## Sub Projects
 
 ### FL Java Gateway
-https://github.com/feknall/fl-java-gateway
+https://github.com/feknall/dist-fed-gateway
 
 ### Fabric Java Chaincode
-https://github.com/feknall/fedblockchain-fabric/tree/master/chaincode-java
+https://github.com/feknall/dist-fed-chaincode
 
 ### Aries, Federated Learning
-https://github.com/feknall/FedBlockchain
+https://github.com/feknall/dist-fed-core
 
 ### Fabric Deployment
 https://github.com/feknall/test-network
