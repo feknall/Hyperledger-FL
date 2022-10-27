@@ -9,7 +9,7 @@ https://github.com/feknall/dist-fed-gateway
 https://github.com/feknall/dist-fed-chaincode
 
 ### Aries, Federated Learning
-https://github.com/feknall/dist-fed-core
+https://github.com/feknall/FedBlockchain
 
 ### Fabric Deployment
 https://github.com/feknall/test-network
