@@ -30,21 +30,39 @@ Next, we need to run fabric using docker.
 Finally, we deploy the chaincode on the fabric.
 1. Deploy the chaincode using the below command. Make sure to pass the correct value for `-ccp` and `-cccg` flags. 
 ```
-```./network.sh deployCC -ccn basic -ccp [java-chaincode]  -ccl java -ccep "OR('Org1MSP.peer','Org2MSP.peer')"  -cccg [java-chaincode/collections_config.json] -ccep "OR('Org1MSP.peer','Org2MSP.peer')"```
 ```
+./network.sh deployCC -ccn basic -ccp [java-chaincode]  -ccl java -ccep "OR('Org1MSP.peer','Org2MSP.peer')"  -cccg [java-chaincode/collections_config.json] -ccep "OR('Org1MSP.peer','Org2MSP.peer')"
+```
+
 
 Now the chaincode is deployed. We can start some docker containers which are our clients.
 1. For the gateway:
-```docker pull hmaid/hyperledger:dist-fed-gateway```
-```git clone https://github.com/feknall/dist-fed-gateway```
-```cd dist-fed-gateway```
-```docker compose up```
+```
+docker pull hmaid/hyperledger:dist-fed-gateway
+```
+```
+git clone https://github.com/feknall/dist-fed-gateway
+```
+```
+cd dist-fed-gateway
+```
+```
+docker compose up
+```
 
 2. For the core:
-```docker pull hmaid/hyperledger:dist-fed-core```
-```git clone https://github.com/feknall/FedBlockchain```
-```cd FedBlockchain```
-```docker compose up```
+```
+docker pull hmaid/hyperledger:dist-fed-core
+```
+```
+git clone https://github.com/feknall/FedBlockchain
+```
+```
+cd FedBlockchain
+```
+```
+docker compose up
+```
 
 ## Development Concerns
 This project tries to integrate Hyperledger Fabric, Aries Agents, and Indy. The task is training a federated learning model. In order to acheive that
