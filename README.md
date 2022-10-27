@@ -17,15 +17,27 @@ https://github.com/feknall/test-network
 ## How To Run with Docker
 
 First we need to download the chaincode and build it. For doing this step, you must have 'openjdk-18'.
-1. `git clone https://github.com/feknall/dist-fed-chaincode`
-2. `cd dist-fed-chaincode`
-3. Run `./gradlew clean build`
+```
+git clone https://github.com/feknall/dist-fed-chaincode
+```
+```
+cd dist-fed-chaincode
+```
+```
+./gradlew clean build
+```
 
 
 Next, we need to run fabric using docker.
-1. `git clone https://github.com/feknall/test-network`
-2. `cd test-network`
-4. `./network.sh up createChannel -c mychannel -ca`
+```
+git clone https://github.com/feknall/test-network
+```
+```
+cd test-network
+```
+```
+./network.sh up createChannel -c mychannel -ca
+```
 
 Finally, we deploy the chaincode on the fabric.
 1. Deploy the chaincode using the below command. Make sure to pass the correct value for `-ccp` and `-cccg` flags. 
