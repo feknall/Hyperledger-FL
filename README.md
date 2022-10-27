@@ -40,7 +40,7 @@ cd test-network
 ```
 
 Finally, we deploy the chaincode on the fabric.
-1. Deploy the chaincode using the below command. Make sure to pass the correct value for `-ccp` and `-cccg` flags. 
+Deploy the chaincode using the below command. Make sure to pass the correct value for `-ccp` and `-cccg` flags. 
 ```
 ./network.sh deployCC -ccn basic -ccp [java-chaincode]  -ccl java -ccep "OR('Org1MSP.peer','Org2MSP.peer')"  -cccg [java-chaincode/collections_config.json] -ccep "OR('Org1MSP.peer','Org2MSP.peer')"
 ```
