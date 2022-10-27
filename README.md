@@ -47,6 +47,10 @@ Finally, we deploy the chaincode on the fabric.
 
 
 Now the chaincode is deployed. We can start some docker containers which are our clients.
+Add this line to `~/.bashrc`. Make sure use the correct path for `fabric-samples`.
+```
+export DIST_FED_GATEWAY_CREDENTIAL_HOME=[path-to-fabric-samples]/test-network/organizations/peerOrganizations
+```
 1. For the gateway:
 ```
 docker pull hmaid/hyperledger:dist-fed-gateway
