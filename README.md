@@ -16,7 +16,7 @@ https://github.com/feknall/test-network
 
 ## How To Run with Docker
 
-First we need to download the chaincode and build it. For doing this step, you must have 'openjdk-18'.
+First we need to download the chaincode and build it. For doing this step, you must have `openjdk-18`.
 ```
 git clone https://github.com/feknall/dist-fed-chaincode
 ```
