@@ -26,6 +26,14 @@ docker compose version
 # Docker Compose version v2.6.1
 ```
 Since everything is based on docker, there shouldn't be a problem with running the project. However, the main OS for developing the project is `Ubuntu 22.04.1 LTS`, and scripts are written in Bash. Therefore, you might need to do some steps manually if your OS does not support Bash.
+```
+lsb_release -a
+
+# Distributor ID:	Ubuntu
+# Description:	Ubuntu 22.04.1 LTS
+# Release:	22.04
+# Codename:	jammy
+```
 
 We assume that you have a base directory in `/opt/hyperledger-fl`.
 
