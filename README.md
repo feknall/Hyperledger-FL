@@ -37,10 +37,10 @@ lsb_release -a
 
 We assume that you have a base directory in `/opt/hyperledger-fl`.
 
-## Fabric
+## Fabric (Chaincode and Network)
 First we need to clone `dist-fed-chaincode` repository. This repository contains the required chaincodes and a test network for deploying chaincodes.
 ```
-cd /opt/hyperledger-fl/
+cd /opt/hyperledger-fl
 git clone https://github.com/feknall/dist-fed-chaincode
 cd dist-fed-chaincode
 ```
@@ -95,7 +95,7 @@ source ~/.bashrc
 
 Now, we clone `dist-fed-gateway` repository:
 ```
-cd /opt/hyperledger-fl/
+cd /opt/hyperledger-fl
 git clone https://github.com/feknall/dist-fed-gateway
 cd dist-fed-gateway
 ```
@@ -122,43 +122,29 @@ f07048137dcb   hyperledger/fabric-peer:latest          "peer node start"        
 4478eef46a41   hyperledger/fabric-ca:latest            "sh -c 'fabric-ca-se…"   37 minutes ago   Up 37 minutes   0.0.0.0:8054->8054/tcp, :::8054->8054/tcp, 7054/tcp, 0.0.0.0:18054->18054/tcp, :::18054->18054/tcp                                ca_org2
 ```
 
-
-
-
-Finally, we deploy the chaincode on the fabric.
-Deploy the chaincode using the below command. Make sure to pass the correct value for `-ccp` and `-cccg` flags. 
+## FedBlockchain (Federated Learning, Indy, Von Network)
+### Federated Learning
+By finishing previous steps, clients are ready start. 
 ```
-./network.sh deployCC -ccn basic -ccp [java-chaincode]  -ccl java -ccep "OR('Org1MSP.peer','Org2MSP.peer')"  -cccg [java-chaincode/collections_config.json] -ccep "OR('Org1MSP.peer','Org2MSP.peer')"
-```
-
-
-Now the chaincode is deployed. We can start some docker containers which are our clients.
-Add this line to `~/.bashrc`. Make sure use the correct path for `fabric-samples`.
-```
-export DIST_FED_GATEWAY_CREDENTIAL_HOME=[path-to-fabric-samples]/test-network/organizations/peerOrganizations
-```
-1. For the gateway:
-
-```
-cd dist-fed-gateway
-```
-```
-docker compose up
-```
-
-2. For the core:
-```
-docker pull hmaid/hyperledger:dist-fed-core
-```
-```
+cd /opt/hyperledger-fl
 git clone https://github.com/feknall/FedBlockchain
-```
-```
 cd FedBlockchain
 ```
+For starting the training process, run:
 ```
+cd fl
 docker compose up
 ```
+It trains a model for a couple of rounds and prints the accuracy of the trained model at the end.
+
+
+### Identity (TO BE COMPLTED)
+For starting the identity process, run:
+```
+cd identity
+docker  compose up
+```
+
 
 ## Development Concerns
 This project tries to integrate Hyperledger Fabric, Aries Agents, and Indy. The task is training a federated learning model. In order to acheive that
