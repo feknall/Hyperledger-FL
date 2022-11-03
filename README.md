@@ -19,10 +19,11 @@ https://github.com/feknall/test-network
 ## Prerequisites
 Make sure `docker` and `docker compose` are successfully installed. 
 ```
-docker --version
-```
-```
-docker compose version
+docker --version 
+# Docker version 20.10.21, build baeda1f
+
+docker compose version 
+# Docker Compose version v2.6.1
 ```
 Since everything is based on docker, there shouldn't be a problem with running the project. However, the main OS for developing the project is `Ubuntu 22.04.1 LTS`, and scripts are written in Bash. Therefore, you might need to do some steps manually if your OS does not support Bash.
 
