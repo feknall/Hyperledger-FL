@@ -29,14 +29,10 @@ Since everything is based on docker, there shouldn't be a problem with running t
 We assume that you have a base directory in `/opt/hyperledger-fl`.
 
 ## Fabric
-```
-cd /opt/hyperledger-fl/
-```
 First we need to clone `dist-fed-chaincode` repository. This repository contains the required chaincodes and a test network for deploying chaincodes.
 ```
+cd /opt/hyperledger-fl/
 git clone https://github.com/feknall/dist-fed-chaincode
-```
-```
 cd dist-fed-chaincode
 ```
 You only need to use `install.sh`, `start.sh`, and `stop.sh` scripts. 
@@ -73,21 +69,28 @@ So far, a test network is running with deployed chaincode.
 
 
 ## Gateway
-```
-cd /opt/hyperledger-fl/
-```
 As `fabric-gateway` doest not have Python SDK, we have implemented a gateway using Java that receives REST calls from Python clients.
 
 First of all, you must set this environment variable. You can set it in `~/.bashrc` file.
 ```
+vim ~/.bashrc
+```
+Append this line at the end:
+```
 export DIST_FED_GATEWAY_CREDENTIAL_HOME=[path-to-dist-fed-chaincode]/test-network/organizations/peerOrganizations
 ```
+Apply changes:
 ```
+source ~/.bashrc
+```
+
+Now, we clone `dist-fed-gateway` repository:
+```
+cd /opt/hyperledger-fl/
 git clone https://github.com/feknall/dist-fed-gateway
-```
-```
 cd dist-fed-gateway
 ```
+And use docker to run it:
 ```
 docker compose up
 ```
