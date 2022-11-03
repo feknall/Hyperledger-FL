@@ -24,7 +24,9 @@ docker --version
 ```
 docker compose version
 ```
+Since everything is based on docker, there shouldn't be a problem with running the project. However, the main OS for developing the project is `Ubuntu 22.04.1 LTS`, and scripts are written in Bash. Therefore, you might need to do some steps manually if your OS does not support Bash.
 
+## Fabric
 First we need to clone `dist-fed-chaincode` repository. This repository contains the required chaincodes and a test network for deploying chaincodes.
 ```
 git clone https://github.com/feknall/dist-fed-chaincode
@@ -43,7 +45,20 @@ Next, you can use `start.sh` and `stop.sh` for deploying and undeploying.
 chmod +x start.sh
 ./start.sh
 ```
-When you are done, use:
+Here is the the output of `docker ps -a`:
+```
+5bd0a5c1233f   dist-fed-chaincode_ccaas_image:latest   "/tini -- /docker-en…"   6 seconds ago    Up 5 seconds    9999/tcp                                                                                                                          peer0org2_dist-fed-chaincode_ccaas
+5db5f2a96113   dist-fed-chaincode_ccaas_image:latest   "/tini -- /docker-en…"   6 seconds ago    Up 5 seconds    9999/tcp                                                                                                                          peer0org1_dist-fed-chaincode_ccaas
+ca98a0cc11e2   hyperledger/fabric-tools:latest         "/bin/bash"              45 seconds ago   Up 44 seconds                                                                                                                                     cli
+adf971f2747a   hyperledger/fabric-orderer:latest       "orderer"                46 seconds ago   Up 45 seconds   0.0.0.0:7050->7050/tcp, :::7050->7050/tcp, 0.0.0.0:7053->7053/tcp, :::7053->7053/tcp, 0.0.0.0:9443->9443/tcp, :::9443->9443/tcp   orderer.example.com
+f07048137dcb   hyperledger/fabric-peer:latest          "peer node start"        46 seconds ago   Up 45 seconds   0.0.0.0:7051->7051/tcp, :::7051->7051/tcp, 0.0.0.0:9444->9444/tcp, :::9444->9444/tcp                                              peer0.org1.example.com
+5963f8d83364   hyperledger/fabric-peer:latest          "peer node start"        46 seconds ago   Up 45 seconds   0.0.0.0:9051->9051/tcp, :::9051->9051/tcp, 7051/tcp, 0.0.0.0:9445->9445/tcp, :::9445->9445/tcp                                    peer0.org2.example.com
+7a9577cdb68c   hyperledger/fabric-ca:latest            "sh -c 'fabric-ca-se…"   55 seconds ago   Up 54 seconds   0.0.0.0:9054->9054/tcp, :::9054->9054/tcp, 7054/tcp, 0.0.0.0:19054->19054/tcp, :::19054->19054/tcp                                ca_orderer
+6d4b00b50b14   hyperledger/fabric-ca:latest            "sh -c 'fabric-ca-se…"   55 seconds ago   Up 54 seconds   0.0.0.0:7054->7054/tcp, :::7054->7054/tcp, 0.0.0.0:17054->17054/tcp, :::17054->17054/tcp                                          ca_org1
+4478eef46a41   hyperledger/fabric-ca:latest            "sh -c 'fabric-ca-se…"   55 seconds ago   Up 53 seconds   0.0.0.0:8054->8054/tcp, :::8054->8054/tcp, 7054/tcp, 0.0.0.0:18054->18054/tcp, :::18054->18054/tcp                                ca_org2
+```
+
+When you are done, you can use:
 ```
 chmod +x stop.sh
 ./stop.sh
@@ -51,16 +66,6 @@ chmod +x stop.sh
 For the next times, you do not need to run `install.sh` file again. You can just use `start.sh` and `stop.sh`.
 So far, a test network is running with deployed chaincode.
 
-Next, we need to run fabric using docker.
-```
-git clone https://github.com/feknall/test-network
-```
-```
-cd test-network
-```
-```
-./network.sh up createChannel -c mychannel -ca
-```
 
 Finally, we deploy the chaincode on the fabric.
 Deploy the chaincode using the below command. Make sure to pass the correct value for `-ccp` and `-cccg` flags. 
