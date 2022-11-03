@@ -26,7 +26,12 @@ docker compose version
 ```
 Since everything is based on docker, there shouldn't be a problem with running the project. However, the main OS for developing the project is `Ubuntu 22.04.1 LTS`, and scripts are written in Bash. Therefore, you might need to do some steps manually if your OS does not support Bash.
 
+We assume that you have a base directory in `/opt/hyperledger-fl`.
+
 ## Fabric
+```
+cd /opt/hyperledger-fl/
+```
 First we need to clone `dist-fed-chaincode` repository. This repository contains the required chaincodes and a test network for deploying chaincodes.
 ```
 git clone https://github.com/feknall/dist-fed-chaincode
@@ -67,6 +72,47 @@ For the next times, you do not need to run `install.sh` file again. You can just
 So far, a test network is running with deployed chaincode.
 
 
+## Gateway
+```
+cd /opt/hyperledger-fl/
+```
+As `fabric-gateway` doest not have Python SDK, we have implemented a gateway using Java that receives REST calls from Python clients.
+
+First of all, you must set this environment variable. You can set it in `~/.bashrc` file.
+```
+export DIST_FED_GATEWAY_CREDENTIAL_HOME=[path-to-dist-fed-chaincode]/test-network/organizations/peerOrganizations
+```
+```
+git clone https://github.com/feknall/dist-fed-gateway
+```
+```
+cd dist-fed-gateway
+```
+```
+docker compose up
+```
+Now, the gateway is up and running. Here is the expected `docker ps -a` result:
+```
+ec186c38c9ab   hmaid/hyperledger:dist-fed-gateway      "java -jar /gateway.…"   48 seconds ago   Up 47 seconds                                                                                                                                     trainer01.example.com
+08b240d556f4   hmaid/hyperledger:dist-fed-gateway      "java -jar /gateway.…"   48 seconds ago   Up 47 seconds                                                                                                                                     aggregator.org2.example.com
+6e2983736295   hmaid/hyperledger:dist-fed-gateway      "java -jar /gateway.…"   48 seconds ago   Up 47 seconds                                                                                                                                     trainer02.example.com
+3326ecec85a6   hmaid/hyperledger:dist-fed-gateway      "java -jar /gateway.…"   48 seconds ago   Up 47 seconds                                                                                                                                     admin.org2.example.com
+707bd983be7d   hmaid/hyperledger:dist-fed-gateway      "java -jar /gateway.…"   48 seconds ago   Up 47 seconds                                                                                                                                     aggregator.org1.example.com
+636892c57a01   hmaid/hyperledger:dist-fed-gateway      "java -jar /gateway.…"   48 seconds ago   Up 47 seconds                                                                                                                                     leadAggregator.org2.example.com
+5bd0a5c1233f   dist-fed-chaincode_ccaas_image:latest   "/tini -- /docker-en…"   37 minutes ago   Up 37 minutes   9999/tcp                                                                                                                          peer0org2_dist-fed-chaincode_ccaas
+5db5f2a96113   dist-fed-chaincode_ccaas_image:latest   "/tini -- /docker-en…"   37 minutes ago   Up 37 minutes   9999/tcp                                                                                                                          peer0org1_dist-fed-chaincode_ccaas
+ca98a0cc11e2   hyperledger/fabric-tools:latest         "/bin/bash"              37 minutes ago   Up 37 minutes                                                                                                                                     cli
+adf971f2747a   hyperledger/fabric-orderer:latest       "orderer"                37 minutes ago   Up 37 minutes   0.0.0.0:7050->7050/tcp, :::7050->7050/tcp, 0.0.0.0:7053->7053/tcp, :::7053->7053/tcp, 0.0.0.0:9443->9443/tcp, :::9443->9443/tcp   orderer.example.com
+f07048137dcb   hyperledger/fabric-peer:latest          "peer node start"        37 minutes ago   Up 37 minutes   0.0.0.0:7051->7051/tcp, :::7051->7051/tcp, 0.0.0.0:9444->9444/tcp, :::9444->9444/tcp                                              peer0.org1.example.com
+5963f8d83364   hyperledger/fabric-peer:latest          "peer node start"        37 minutes ago   Up 37 minutes   0.0.0.0:9051->9051/tcp, :::9051->9051/tcp, 7051/tcp, 0.0.0.0:9445->9445/tcp, :::9445->9445/tcp                                    peer0.org2.example.com
+7a9577cdb68c   hyperledger/fabric-ca:latest            "sh -c 'fabric-ca-se…"   37 minutes ago   Up 37 minutes   0.0.0.0:9054->9054/tcp, :::9054->9054/tcp, 7054/tcp, 0.0.0.0:19054->19054/tcp, :::19054->19054/tcp                                ca_orderer
+6d4b00b50b14   hyperledger/fabric-ca:latest            "sh -c 'fabric-ca-se…"   37 minutes ago   Up 37 minutes   0.0.0.0:7054->7054/tcp, :::7054->7054/tcp, 0.0.0.0:17054->17054/tcp, :::17054->17054/tcp                                          ca_org1
+4478eef46a41   hyperledger/fabric-ca:latest            "sh -c 'fabric-ca-se…"   37 minutes ago   Up 37 minutes   0.0.0.0:8054->8054/tcp, :::8054->8054/tcp, 7054/tcp, 0.0.0.0:18054->18054/tcp, :::18054->18054/tcp                                ca_org2
+```
+
+
+
+
 Finally, we deploy the chaincode on the fabric.
 Deploy the chaincode using the below command. Make sure to pass the correct value for `-ccp` and `-cccg` flags. 
 ```
@@ -80,12 +126,7 @@ Add this line to `~/.bashrc`. Make sure use the correct path for `fabric-samples
 export DIST_FED_GATEWAY_CREDENTIAL_HOME=[path-to-fabric-samples]/test-network/organizations/peerOrganizations
 ```
 1. For the gateway:
-```
-docker pull hmaid/hyperledger:dist-fed-gateway
-```
-```
-git clone https://github.com/feknall/dist-fed-gateway
-```
+
 ```
 cd dist-fed-gateway
 ```
