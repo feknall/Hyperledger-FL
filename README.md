@@ -146,7 +146,7 @@ docker compose up flAdmin
 It trains a model for a couple of rounds and prints the accuracy of the trained model at the end.
 
 
-### Identity (TO BE COMPLTED)
+### Identity
 For starting the identity process, run:
 ```
 cd /opt/hyperledger-fl
