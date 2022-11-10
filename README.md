@@ -125,16 +125,23 @@ f07048137dcb   hyperledger/fabric-peer:latest          "peer node start"        
 
 ## FedBlockchain (Federated Learning, Indy, Von Network)
 ### Federated Learning
-By finishing previous steps, clients are ready start. 
+By finishing previous steps, clients are ready to start. 
 ```
 cd /opt/hyperledger-fl
-git clone https://github.com/feknall/FedBlockchain
-cd FedBlockchain
+git clone https://github.com/feknall/dist-fed-core-fl
+cd dist-fed-core-fl
 ```
 For starting the training process, run:
 ```
-cd fl
-docker compose up
+./start.sh
+```
+Then use
+```
+docker compose -f docker-compose-fl-trainer.yml logs trainer1
+```
+And make sure the response of checking in is 200. Then run:
+```
+docker compose up flAdmin
 ```
 It trains a model for a couple of rounds and prints the accuracy of the trained model at the end.
 
