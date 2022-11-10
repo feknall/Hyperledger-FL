@@ -101,7 +101,8 @@ cd dist-fed-gateway
 ```
 And use docker to run it:
 ```
-docker compose up
+chmod +x start.sh
+./start.sh
 ```
 Now, the gateway is up and running. Here is the expected `docker ps -a` result:
 ```
