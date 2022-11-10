@@ -86,7 +86,7 @@ vim ~/.bashrc
 ```
 Append this line at the end:
 ```
-export DIST_FED_GATEWAY_CREDENTIAL_HOME=[path-to-dist-fed-chaincode]/test-network/organizations/peerOrganizations
+export DIST_FED_CREDENTIAL_HOME=[path-to-dist-fed-chaincode]/test-network/organizations
 ```
 Apply changes:
 ```
