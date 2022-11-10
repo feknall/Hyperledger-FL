@@ -128,7 +128,7 @@ f07048137dcb   hyperledger/fabric-peer:latest          "peer node start"        
 By finishing previous steps, clients are ready to start. 
 ```
 cd /opt/hyperledger-fl
-git clone https://github.com/feknall/dist-fed-core-fl
+git clone https://github.com/feknall/dist-fed-core-fl.git
 cd dist-fed-core-fl
 ```
 For starting the training process, run:
@@ -149,10 +149,22 @@ It trains a model for a couple of rounds and prints the accuracy of the trained 
 ### Identity (TO BE COMPLTED)
 For starting the identity process, run:
 ```
-cd identity
-docker  compose up
+cd /opt/hyperledger-fl
+git clone https://github.com/feknall/dist-fed-core-identity.git
+cd dist-fed-core-identity
 ```
-
+There is 3 different scripts:
+```
+chmod +x start-client.sh
+chmod +x start-verifier.sh
+chmod +x start-issuer.sh
+```
+Then execute each line of this code in a separate terminal:
+```
+./start-client.sh
+./start-verifier.sh
+./start-issuer.sh
+```
 
 ## Development Concerns
 This project tries to integrate Hyperledger Fabric, Aries Agents, and Indy. The task is training a federated learning model. In order to acheive that
